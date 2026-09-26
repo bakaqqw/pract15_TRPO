@@ -16,6 +16,7 @@ namespace ElectronicsShop.Views
 
         public NameEditorWindow(string dictionaryType, DictionaryItem? selectedItem = null)
         {
+            Auth.CheckManager();
             InitializeComponent();
             type = dictionaryType;
             if (selectedItem != null)
@@ -80,6 +81,7 @@ namespace ElectronicsShop.Views
 
             try
             {
+                Auth.CheckManager();
                 InputRules.CheckName(item.Name);
                 string name = item.Name.Trim();
 

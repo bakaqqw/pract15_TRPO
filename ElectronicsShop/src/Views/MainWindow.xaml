@@ -9,7 +9,7 @@
         Title="Магазин электроники" Height="720" Width="1180"
         MinHeight="640" MinWidth="960" Loaded="Window_Loaded">
 
-    <Grid Margin="12,9,19,13">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -17,59 +17,59 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="0,0,4,11">
+        <Grid Margin="0,0,0,15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="9,3,0,0">
+            <StackPanel>
                 <TextBlock Text="Магазин электроники" FontSize="20" FontWeight="Bold"/>
-                <TextBlock x:Name="RoleText" Foreground="#49636A" Margin="7,8,0,0"/>
+                <TextBlock x:Name="RoleText" Foreground="#49636A" Margin="0,5,0,0"/>
             </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Click="Refresh_Click" Content="Обновить" Width="103" Height="39" Margin="0,11,23,0"/>
-                <Button Click="GoBack_Click" Content="Сменить роль" Width="139" Height="36" Margin="0,2,5,0"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Click="Refresh_Click" Content="Обновить" Width="110" Margin="0,0,10,0"/>
+                <Button Click="GoBack_Click" Content="Сменить роль" Width="140"/>
             </StackPanel>
         </Grid>
 
-        <WrapPanel Grid.Row="1" x:Name="ManagerPanel" Margin="3,0,0,13">
-            <Button Click="Create_Click" Content="Добавить товар" Width="152" Height="38" VerticalAlignment="Top" Margin="5,1,22,8"/>
-            <Button Click="Categories_Click" Content="Категории" Width="123" Height="36" VerticalAlignment="Top" Margin="16,8,8,0"/>
-            <Button Click="Brands_Click" Content="Бренды" Width="101" Height="40" VerticalAlignment="Top" Margin="2,0,28,6"/>
-            <Button Click="Tags_Click" Content="Теги" Width="78" Height="36" VerticalAlignment="Top" Margin="10,12,0,0"/>
-        </WrapPanel>
+        <StackPanel Grid.Row="1" x:Name="ManagerPanel" Orientation="Horizontal" Margin="0,0,0,15">
+            <Button Click="Create_Click" Content="Добавить товар" Width="160" Margin="0,0,10,0"/>
+            <Button Click="Categories_Click" Content="Категории" Width="120" Margin="0,0,10,0"/>
+            <Button Click="Brands_Click" Content="Бренды" Width="100" Margin="0,0,10,0"/>
+            <Button Click="Tags_Click" Content="Теги" Width="90"/>
+        </StackPanel>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="235"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="1" Background="White" Padding="8,13,14,10" Margin="18,9,0,3">
+            <Border Background="White" Padding="10" Margin="0,0,10,0">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <StackPanel>
-                        <TextBlock Text="Фильтры" FontSize="18" FontWeight="Bold" Margin="7,0,0,12"/>
-                        <Label Content="Категория:" Margin="0,0,0,2"/>
+                        <TextBlock Text="Фильтры" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <Label Content="Категория:" Margin="0,0,0,5"/>
                         <ComboBox x:Name="CategoryBox" ItemsSource="{Binding Categories}"
                                   DisplayMemberPath="Name" SelectedValuePath="Id"
-                                  SelectionChanged="Filter_SelectionChanged" Margin="3,0,7,13"/>
+                                  SelectionChanged="Filter_SelectionChanged" Margin="0,0,0,10"/>
 
-                        <Label Content="Бренд:" Margin="8,0,0,1"/>
+                        <Label Content="Бренд:" Margin="0,0,0,5"/>
                         <ComboBox x:Name="BrandBox" ItemsSource="{Binding Brands}"
                                   DisplayMemberPath="Name" SelectedValuePath="Id"
-                                  SelectionChanged="Filter_SelectionChanged" Margin="11,2,0,6"/>
+                                  SelectionChanged="Filter_SelectionChanged" Margin="0,0,0,10"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Margin="0,5,7,0">
+                            <StackPanel Margin="0,0,5,0">
                                 <Label Content="Цена от:" Margin="0,0,0,5"/>
                                 <TextBox x:Name="PriceFromBox" TextChanged="Search_TextChanged"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Margin="2,14,0,0">
+                            <StackPanel Grid.Column="1" Margin="5,0,0,0">
                                 <Label Content="Цена до:" Margin="0,0,0,5"/>
                                 <TextBox x:Name="PriceToBox" TextChanged="Search_TextChanged"/>
                             </StackPanel>
@@ -77,12 +77,15 @@
 
                         <TextBlock x:Name="FilterError" Foreground="#A52A2A" FontSize="11"
                                    TextWrapping="Wrap" MinHeight="40" Margin="0,5,0,5"/>
-                        <Button Click="Reset_Click" Content="Сбросить" Width="117" Height="38" HorizontalAlignment="Left" Margin="19,4,0,14"/>
+                        <Button Click="Reset_Click" Content="Сбросить" Margin="0,0,0,10"/>
+                        <Button Click="View_Click" Content="Просмотреть" Margin="0,0,0,10"/>
+                        <Button x:Name="EditButton" Click="Change_Click" Content="Изменить" Margin="0,0,0,10"/>
+                        <Button x:Name="DeleteButton" Click="Delete_Click" Content="Удалить" Margin="0,0,0,10"/>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
 
-            <Grid Grid.Column="0" Margin="0,3,0,0">
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -94,15 +97,15 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="240"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="7,4,21,0">
+                    <StackPanel Margin="0,0,10,0">
                         <Label Content="Поиск по наименованию:" Margin="0,0,0,5"/>
-                        <TextBox x:Name="SearchBox" TextChanged="Search_TextChanged" MaxLength="200" Margin="9,0,0,7"/>
+                        <TextBox x:Name="SearchBox" TextChanged="Search_TextChanged"/>
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Margin="0,12,8,0">
-                        <Label Content="Сортировка:" Margin="13,0,0,2"/>
-                        <ComboBox x:Name="SortBox" SelectedIndex="0" SelectionChanged="Sort_SelectionChanged" Margin="4,0,0,0">
-                            <ComboBoxItem Tag="NameAsc" Content="Наименование: А → Я"/>
-                            <ComboBoxItem Tag="NameDesc" Content="Наименование: Я → А"/>
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Сортировка:" Margin="0,0,0,5"/>
+                        <ComboBox x:Name="SortBox" SelectedIndex="0" SelectionChanged="Sort_SelectionChanged">
+                            <ComboBoxItem Tag="NameAsc" Content="Наименование: от А до Я"/>
+                            <ComboBoxItem Tag="NameDesc" Content="Наименование: от Я до А"/>
                             <ComboBoxItem Tag="PriceAsc" Content="Цена: по возрастанию"/>
                             <ComboBoxItem Tag="PriceDesc" Content="Цена: по убыванию"/>
                             <ComboBoxItem Tag="StockAsc" Content="Остаток: по возрастанию"/>
@@ -111,14 +114,10 @@
                     </StackPanel>
                 </Grid>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,12">
-                    <Button Click="View_Click" Content="Просмотреть" Width="137" Height="36" VerticalAlignment="Top" Margin="17,6,19,0"/>
-                    <Button x:Name="EditButton" Click="Change_Click" Content="Изменить" Width="111" Height="40" VerticalAlignment="Top" Margin="3,0,34,5"/>
-                    <Button x:Name="DeleteButton" Click="Delete_Click" Content="Удалить" Width="97" Height="36" VerticalAlignment="Top" Margin="0,9,0,0"/>
-                </StackPanel>
 
                 <ListView Grid.Row="2" x:Name="ProductsList" ItemsSource="{Binding Products}"
-                          Background="Transparent" BorderThickness="0" Margin="0,5,6,0"
+                          SelectedItem="{Binding SelectedProduct}"
+                          Background="Transparent" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -129,7 +128,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="2" Padding="11,8,17,13" Margin="4,3,1,7">
+                            <Border BorderThickness="2" Padding="10" Margin="5">
                                 <Border.Style>
                                     <Style TargetType="Border">
                                         <Setter Property="Background" Value="White"/>
@@ -167,7 +166,7 @@
                                         <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
                                         <TextBlock Text="{Binding TagsText}" Foreground="#007D87" TextWrapping="Wrap" Margin="0,12,0,0"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,7,3,0">
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                         <TextBlock Text="{Binding Price, StringFormat={}{0:N2}}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right"/>
                                         <Label Content="Цена:" Foreground="#49636A" HorizontalAlignment="Right" Margin="0,3,0,20"/>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -187,10 +186,10 @@
 
         <StackPanel Grid.Row="3" Margin="0,10,0,0">
             <StackPanel Orientation="Horizontal">
-                <Label x:Name="InfoProducts" Content="Всего товаров: 0" Margin="6,0,27,0"/>
-                <Label x:Name="InfoShown" Content="Показано: 0" Margin="9,6,0,0"/>
+                <Label x:Name="InfoProducts" Content="Всего товаров: 0" Margin="0,0,20,0"/>
+                <Label x:Name="InfoShown" Content="Показано: 0"/>
             </StackPanel>
-            <TextBlock x:Name="StatusText" FontSize="12" Foreground="#49636A" TextWrapping="Wrap" Margin="18,2,0,0"/>
+            <TextBlock x:Name="StatusText" FontSize="12" Foreground="#49636A" TextWrapping="Wrap" Margin="0,5,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

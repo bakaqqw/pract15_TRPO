@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicsShop.Data
 {
+
+    // Модель существующей базы из database/Restore.sql.
     public partial class ShopDbContext : DbContext
     {
         public ShopDbContext()

@@ -8,7 +8,7 @@
         Title="Запись справочника" Height="270" Width="550" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" Closing="Window_Closing">
 
-    <Grid Margin="14,17,23,15">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -19,14 +19,14 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" x:Name="Heading" FontSize="20" Margin="12,4,0,19"/>
-        <Label Grid.Row="1" Content="Наименование:" FontSize="14" VerticalAlignment="Center" Margin="3,8,5,0"/>
+        <TextBlock Grid.ColumnSpan="2" x:Name="Heading" FontSize="20" FontWeight="Bold" Margin="0,0,0,25"/>
+        <Label Grid.Row="1" Content="Наименование:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="NameBox"
-                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MaxLength="100" Margin="17,0,28,7"/>
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="46,16,0,0">
-            <Button Click="Save_Click" Content="Сохранить" Width="136" Height="40" VerticalAlignment="Top" IsDefault="True" Margin="0,0,0,7"/>
-            <Button Click="GoBack_Click" Content="Назад" Width="92" Height="36" VerticalAlignment="Top" Margin="37,10,0,0"/>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,25,0,0">
+            <Button Click="Save_Click" Content="Сохранить" Width="140" IsDefault="True" Margin="0,0,10,0"/>
+            <Button Click="GoBack_Click" Content="Назад" Width="120"/>
         </StackPanel>
     </Grid>
 </Window>

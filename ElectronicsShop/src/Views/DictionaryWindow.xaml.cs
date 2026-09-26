@@ -17,6 +17,7 @@ namespace ElectronicsShop.Views
 
         public DictionaryWindow(string dictionaryType)
         {
+            Auth.CheckManager();
             InitializeComponent();
             type = dictionaryType;
             DataContext = this;
@@ -137,7 +138,7 @@ namespace ElectronicsShop.Views
             string message = $"Удалить «{SelectedItem.Name}»?\nОтменить удаление нельзя.";
             if (type == "tags")
             {
-                message += "\nТег будет снят со всех товаров.";
+                message += "\nТег будет снят со всех товаров. Сами товары останутся.";
             }
 
             if (MessageBox.Show(this, message, "Подтверждение", MessageBoxButton.YesNo,
@@ -148,6 +149,7 @@ namespace ElectronicsShop.Views
 
             try
             {
+                Auth.CheckManager();
                 using (ShopDbContext db = Database.GetContext())
                 {
                     switch (type)

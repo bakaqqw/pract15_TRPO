@@ -5,7 +5,7 @@ namespace ElectronicsShop.classes
 {
     public class InputRules
     {
-        public const int MaxPrice = 1000000;
+        public const decimal MaxPrice = 9999999999.99m;
 
         public static bool TryDecimal(string? text, int places, out decimal value)
         {
@@ -14,10 +14,22 @@ namespace ElectronicsShop.classes
             {
                 return false;
             }
+
+            string number = text.Trim().Replace(',', '.');
+            bool result = decimal.TryParse(number,
+                NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
+                CultureInfo.InvariantCulture, out value);
+
+            if (!result || decimal.Round(value, places) != value)
+            {
+                return false;
+            }
+
             return true;
         }
 
-        public static bool TryPriceRange(string from, string to, out decimal? minimum, out decimal? maximum, out string error)
+        public static bool TryPriceRange(string from, string to,
+            out decimal? minimum, out decimal? maximum, out string error)
         {
             minimum = null;
             maximum = null;
@@ -28,7 +40,7 @@ namespace ElectronicsShop.classes
                 decimal number;
                 if (!TryDecimal(from, 2, out number) || number < 0 || number > MaxPrice)
                 {
-                    error = "Цена от: число от 0 до 1000000";
+                    error = "Цена от: число от 0 до 9 999 999 999,99, до 2 знаков после запятой";
                     return false;
                 }
                 minimum = number;
@@ -39,7 +51,7 @@ namespace ElectronicsShop.classes
                 decimal number;
                 if (!TryDecimal(to, 2, out number) || number < 0 || number > MaxPrice)
                 {
-                    error = "Цена до: число от 0 до 1000000";
+                    error = "Цена до: число от 0 до 9 999 999 999,99, до 2 знаков после запятой";
                     return false;
                 }
                 maximum = number;
@@ -107,7 +119,7 @@ namespace ElectronicsShop.classes
 
             if (product.Price < 0 || product.Price > MaxPrice || decimal.Round(product.Price, 2) != product.Price)
             {
-                throw new ArgumentException("Цена должна быть от 0 до 1000000");
+                throw new ArgumentException("Цена должна быть от 0 до 9 999 999 999,99, до 2 знаков после запятой");
             }
 
             if (product.Stock < 0)
@@ -117,7 +129,7 @@ namespace ElectronicsShop.classes
 
             if (product.Rating < 0 || product.Rating > 5 || decimal.Round(product.Rating, 1) != product.Rating)
             {
-                throw new ArgumentException("Рейтинг должен быть от 0 до 5");
+                throw new ArgumentException("Рейтинг должен быть от 0 до 5, до 1 знака после запятой");
             }
 
             if (product.CategoryId <= 0 || product.BrandId <= 0)

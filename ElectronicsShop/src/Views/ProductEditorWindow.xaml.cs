@@ -20,6 +20,11 @@ namespace ElectronicsShop.Views
 
         public ProductEditorWindow(Product? selectedProduct = null, bool readOnly = false)
         {
+            if (!readOnly)
+            {
+                Auth.CheckManager();
+            }
+
             InitializeComponent();
             isReadOnly = readOnly;
 
@@ -199,6 +204,7 @@ namespace ElectronicsShop.Views
 
             try
             {
+                Auth.CheckManager();
                 InputRules.CheckProduct(product);
 
                 using (ShopDbContext db = Database.GetContext())

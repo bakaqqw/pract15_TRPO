@@ -4,11 +4,13 @@ namespace ElectronicsShop.Models
 {
     public partial class Product
     {
+        [NotMapped]
         public bool IsLowStock
         {
             get { return Stock < 10; }
         }
 
+        [NotMapped]
         public string TagsText
         {
             get

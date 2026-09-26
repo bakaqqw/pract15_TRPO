@@ -1,6 +1,6 @@
 namespace ElectronicsShop.Models
 {
-    // Строка общего окна категорий, брендов и тегов
+    // Строка общего окна категорий, брендов и тегов.
     public class DictionaryItem
     {
         public int Id { get; set; }

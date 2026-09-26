@@ -278,6 +278,7 @@ namespace ElectronicsShop.Views
             ViewProduct();
         }
 
+
         private void ViewProduct()
         {
             if (SelectedProduct == null)
@@ -311,6 +312,7 @@ namespace ElectronicsShop.Views
 
             try
             {
+                Auth.CheckManager();
                 using (ShopDbContext db = Database.GetContext())
                 {
                     Product? product = db.Products.FirstOrDefault(p => p.Id == SelectedProduct.Id);

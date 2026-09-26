@@ -31,6 +31,11 @@ namespace ElectronicsShop.classes
                 return "Не удалось подключиться к базе или выполнить запрос. Проверьте сервер и appsettings.json";
             }
 
+            if (error is IOException || error is JsonException)
+            {
+                return "Не удалось прочитать appsettings.json. Проверьте файл рядом с приложением";
+            }
+
             return error.Message;
         }
     }

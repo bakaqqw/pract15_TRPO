@@ -1,5 +1,3 @@
-using System.Windows;
-
 namespace ElectronicsShop.classes
 {
     public class Auth
@@ -15,6 +13,14 @@ namespace ElectronicsShop.classes
         public static void EnterVisitor()
         {
             IsManager = false;
+        }
+
+        public static void CheckManager()
+        {
+            if (!IsManager)
+            {
+                throw new UnauthorizedAccessException("Изменять данные может только менеджер");
+            }
         }
     }
 }

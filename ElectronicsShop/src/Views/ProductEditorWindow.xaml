@@ -9,89 +9,83 @@
         Title="Карточка товара" Height="650" Width="850" MinHeight="620" MinWidth="800"
         WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Closing="Window_Closing">
 
-    <Grid Margin="13,18,26,12">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="11,2,0,14">
-            <TextBlock x:Name="Heading" FontSize="20"/>
-            <TextBlock Text="Все поля обязательны, кроме тегов" Foreground="#49636A" Margin="5,7,0,0"/>
+        <StackPanel Margin="0,0,0,20">
+            <TextBlock x:Name="Heading" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Text="Все поля обязательны, кроме тегов" Foreground="#49636A" Margin="0,5,0,0"/>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,0,6,0">
-            <Grid x:Name="FormGrid" IsEnabled="False">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="135"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Content="Наименование:" VerticalAlignment="Center" Margin="5,3,4,7"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="NameBox"
-                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" TextChanged="Field_TextChanged" Margin="4,0,21,7"/>
-
-                <Label Grid.Row="1" Content="Цена:" VerticalAlignment="Center" Margin="12,0,10,10"/>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="PriceBox" TextChanged="Field_TextChanged" Margin="18,2,7,10"/>
-                <Label Grid.Row="1" Grid.Column="2" Content="Остаток (шт).:" VerticalAlignment="Center" Margin="8,9,6,3"/>
-                <TextBox Grid.Row="1" Grid.Column="3" x:Name="StockBox" TextChanged="Field_TextChanged" Margin="0,11,15,3"/>
-
-                <Label Grid.Row="2" Content="Рейтинг (0–5):" VerticalAlignment="Center" Margin="2,6,8,0"/>
-                <TextBox Grid.Row="2" Grid.Column="1" x:Name="RatingBox" MaxLength="5" TextChanged="Field_TextChanged" Margin="1,8,29,4"/>
-                <Label Grid.Row="2" Grid.Column="2" Content="Дата:" FontSize="13" VerticalAlignment="Center" Margin="24,5,6,0"/>
-                <DatePicker Grid.Row="2" Grid.Column="3" x:Name="CreatedPicker" SelectedDateChanged="Field_SelectionChanged" Margin="0,0,6,11"/>
-
-                <Label Grid.Row="3" Content="Категория:" VerticalAlignment="Center" Margin="9,0,6,4"/>
-                <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" x:Name="CategoryBox"
-                          DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="Field_SelectionChanged" Margin="12,3,49,8"/>
-
-                <Label Grid.Row="4" Content="Бренд:" VerticalAlignment="Center" Margin="1,5,10,9"/>
-                <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="BrandBox"
-                          DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="Field_SelectionChanged" Margin="2,0,13,13"/>
-
-                <Label Grid.Row="5" Content="Описание:" VerticalAlignment="Top" Margin="14,13,4,0"/>
-                <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DescriptionBox"
-                         Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
-                         TextChanged="Field_TextChanged" Height="78" TextWrapping="Wrap" AcceptsReturn="True"
-                         VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" Margin="17,4,3,9"/>
-
-                <StackPanel Grid.Row="6" Margin="6,12,14,0">
-                    <TextBlock Text="Теги"/>
-                </StackPanel>
-                <ListBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" x:Name="TagsList"
-                         DisplayMemberPath="Name" SelectionMode="Multiple" SelectionChanged="Field_SelectionChanged"
-                         Background="White" BorderBrush="#00b4c4" BorderThickness="1"
-                         Height="105" Margin="3,6,18,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-            </Grid>
-        </ScrollViewer>
-
-        <Grid Grid.Row="2" Margin="0,13,0,0">
+        <Grid Grid.Row="1" x:Name="FormGrid" IsEnabled="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Наименование:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="NameBox"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     TextChanged="Field_TextChanged" Margin="0,0,0,10"/>
+
+            <Label Grid.Row="1" Content="Цена:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="PriceBox" TextChanged="Field_TextChanged" Margin="0,0,0,10"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Остаток, шт.:" VerticalAlignment="Center" Margin="15,0,10,10"/>
+            <TextBox Grid.Row="1" Grid.Column="3" x:Name="StockBox" TextChanged="Field_TextChanged" Margin="0,0,0,10"/>
+
+            <Label Grid.Row="2" Content="Рейтинг, 0–5:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="RatingBox" TextChanged="Field_TextChanged" Margin="0,0,0,10"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="Дата:" FontSize="13" VerticalAlignment="Center" Margin="15,0,5,10"/>
+            <DatePicker Grid.Row="2" Grid.Column="3" x:Name="CreatedPicker" SelectedDateChanged="Field_SelectionChanged" Margin="0,0,0,10"/>
+
+            <Label Grid.Row="3" Content="Категория:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" x:Name="CategoryBox"
+                      DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="Field_SelectionChanged" Margin="0,0,0,10"/>
+
+            <Label Grid.Row="4" Content="Бренд:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="BrandBox"
+                      DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="Field_SelectionChanged" Margin="0,0,0,10"/>
+
+            <Label Grid.Row="5" Content="Описание:" VerticalAlignment="Top" Margin="0,8,10,10"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DescriptionBox"
+                     Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" MaxLength="2000"
+                     TextChanged="Field_TextChanged" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
+                     VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10"/>
+
+            <StackPanel Grid.Row="6" Margin="0,5,10,0">
+                <TextBlock Text="Теги"/>
+            </StackPanel>
+            <ListBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" x:Name="TagsList"
+                     DisplayMemberPath="Name" SelectionMode="Multiple" SelectionChanged="Field_SelectionChanged"
+                     Background="White" BorderBrush="#00b4c4" BorderThickness="1"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="SaveButton" Click="Save_Click" Content="Сохранить" Width="136" Height="41" IsEnabled="False"
-                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="142,0,0,0"/>
-            <Button Grid.Column="1" x:Name="BackButton" Click="GoBack_Click" Content="Назад" Width="94" Height="36"
-                    VerticalAlignment="Top" Margin="0,10,39,0"/>
-            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="StatusText" Text="Загрузка справочников…"
-                       TextWrapping="Wrap" Margin="4,9,8,0"/>
+            <TextBlock x:Name="StatusText" Text="Загрузка справочников…" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,10,0"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button x:Name="SaveButton" Click="Save_Click" Content="Сохранить" Width="140" IsEnabled="False" Margin="0,0,10,0"/>
+                <Button x:Name="BackButton" Click="GoBack_Click" Content="Назад" Width="120"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
