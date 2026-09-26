@@ -1,0 +1,66 @@
+<Window x:Class="ElectronicsShop.Views.DictionaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Style="{StaticResource {x:Type Window}}"
+        Title="Справочник" Height="550" Width="740" MinHeight="450" MinWidth="660"
+        WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+
+    <Grid Margin="14,17,25,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="Heading" FontSize="20" Margin="9,4,0,13"/>
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Margin="3,0,0,0">
+                <Button Click="Create_Click" Content="Добавить" Width="108" Height="38" VerticalAlignment="Top" Margin="0,3,18,0"/>
+                <Button Click="Change_Click" Content="Изменить" Width="118" Height="36" VerticalAlignment="Top" Margin="5,10,22,0"/>
+                <Button Click="Delete_Click" Content="Удалить" Width="96" Height="40" VerticalAlignment="Top" Margin="0,0,0,5"/>
+            </WrapPanel>
+            <Button Grid.Column="1" Click="GoBack_Click" Content="Назад" Width="90" Height="36" VerticalAlignment="Top" Margin="17,6,5,4"/>
+        </Grid>
+
+        <ListView Grid.Row="2" x:Name="ItemsList" ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}" MouseDoubleClick="Items_MouseDoubleClick" Background="White" Margin="9,3,2,6"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Padding="7,11,13,8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Id}" Foreground="#49636A"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="16" TextWrapping="Wrap" Margin="4,3,0,0"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="InfoItems" Content="Всего записей: 0" Margin="18,4,0,0" VerticalAlignment="Top"/>
+            <Button Grid.Column="1" Click="Refresh_Click" Content="Обновить" Width="127" Height="38" Margin="0,12,28,3"/>
+        </Grid>
+    </Grid>
+</Window>
